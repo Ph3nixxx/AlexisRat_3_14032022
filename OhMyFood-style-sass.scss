@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,500;0,700;0,900;1,100;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,500;0,700;0,900;1,100;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* VARIABLES */
 
 $primary-color: #9356DC;
 $secondary-color: #FF79DA;
 $tertiary-color: #99E2D0;
+$fourth-color: #474141;
 $background-color-lightgrey: #f6f6f6;
 $font-family-primary: "Shrikhand";
 $font-family-text: "Roboto";
@@ -30,8 +31,8 @@ $font-family-default: sans-serif;
 
 /* MAPS */
 
-$font-size: (input:17px, h1:20px, h2:20px, h3:18px, h4:18px);
-$font-weight: (input:bold, h1:bolder, h2:bold, h3:bold, h4:normal);
+$font-size: (input:17px, index-h1:20px, index-h2:20px, index-h3:18px, index-h4:18px, arrow:20px, h1:24px, h2:20px, h3:20px, h4:18px);
+$font-weight: (input:bold, index-h1:bolder, index-h2:bold, index-h3:bold, index-h4:normal, h2:normal, h3:bold, h4:normal);
 
 /* ENTIER */
 
@@ -62,6 +63,7 @@ body {
         padding: 20px 0px;
 
         &__location-image {
+            color: $fourth-color;
             padding-right: 15px;
         }
 
@@ -69,6 +71,7 @@ body {
             font-family: $font-family-text, $font-family-default;
             border: none;
             background-color: #eaeaea;
+            color: $fourth-color;
             width: 150px;
             font-size: map-get($font-size, input);
             font-weight: map-get($font-weight, input);
@@ -86,26 +89,26 @@ body {
     align-items: center;
     text-align: center;
     background-color: $background-color-lightgrey;
-    font-size: map-get($font-size, h1);
+    font-size: map-get($font-size, index-h1);
     padding : 40px 20px 60px 20px;
 
     & h1 {
         margin: unset;
-        font-weight: map-get($font-weight, h1);
+        font-weight: map-get($font-weight, index-h1);
     }
 
     & p {
         margin: 10px 0px 30px 0px;
     }
+}
 
-    &__button {
-        text-decoration: none;
-        color: white;
-        background-image: linear-gradient(to bottom, #FF79DA ,#9356DC);
-        padding: 15px 20px;
-        border-radius: 50px;
-        @include box-shadow-secondary;
-    }
+.button {
+    text-decoration: none;
+    color: white;
+    background-image: linear-gradient(to bottom, #FF79DA ,#9356DC);
+    padding: 15px 20px;
+    border-radius: 50px;
+    @include box-shadow-secondary;
 }
 
 .functioning {
@@ -114,8 +117,8 @@ body {
 
     & h2 {
         margin-top: unset;
-        font-size: map-get($font-size, h2);
-        font-weight: map-get($font-weight, h2);
+        font-size: map-get($font-size, index-h2);
+        font-weight: map-get($font-weight, index-h2);
         padding-left: 15px;
     }
     &__steps {
@@ -150,7 +153,7 @@ body {
             }
 
             &:hover {
-                background-color: #9256dc13;
+                background-color: #9256dc23;
 
                 & i {
                     color: $primary-color;
@@ -167,8 +170,8 @@ body {
 
     & h2 {
         margin-top: unset;
-        font-size: map-get($font-size, h2);
-        font-weight: map-get($font-weight, h2);
+        font-size: map-get($font-size, index-h2);
+        font-weight: map-get($font-weight, index-h2);
         padding-left: 15px; 
     }
 
@@ -213,15 +216,15 @@ body {
                     & h3 {
                         margin: unset;
                         padding: 15px 0px 0px 0px;
-                        font-size: map-get($font-size, h3);
-                        font-weight: map-get($font-weight, h3);
+                        font-size: map-get($font-size, index-h3);
+                        font-weight: map-get($font-weight, index-h3);
                     }
 
                     & h4 {
                         margin: unset;
                         padding: 0px 0px 15px 0px;
-                        font-size: map-get($font-size, h4);
-                        font-weight: map-get($font-weight, h4);
+                        font-size: map-get($font-size, index-h4);
+                        font-weight: map-get($font-weight, index-h4);
                     }
                 }
 
@@ -249,7 +252,7 @@ footer {
 .footer {
    &__logo img {
        height: 20px;
-       color: white;
+       fill:white;
    }
 
    &__list {
@@ -274,4 +277,108 @@ footer {
             }
         }
    }
+}
+
+/* MENU */
+
+header {
+    @include display-flex(column);
+}
+
+.header {
+    &__top {
+        @include display-flex(row);
+
+        &__arrow {
+            position: relative;
+            align-self: center;
+            color: $fourth-color;
+            font-size: map-get($font-size, arrow);
+            right: 275px;
+        }
+    }
+
+    &__image img {
+        height: 400px;
+    }
+}
+
+.restaurant {
+    @include display-flex(column);
+    position: relative;
+    bottom: 100px;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+
+    &__name {
+        @include display-flex(row);
+        justify-content: space-between;
+
+        & h1 {
+            font-family: $font-family-primary, $font-family-default;
+            font-size: map-get($font-size, h1);
+            font-weight: map-get($font-weight, h1);
+        }
+
+        & i {
+            align-self: center;
+            font-size: 25px;
+            padding-right: 20px;
+        }
+    }
+
+    &__menu{
+        &__dish {
+            padding-top: 30px;
+
+            & h2 {
+                text-transform: uppercase;            
+                font-size: map-get($font-size, h2);
+                font-weight: map-get($font-weight, h2);
+                padding-bottom: 8px;
+                border-bottom: 4px  solid $tertiary-color;
+            }
+            
+            &__bloc {
+                @include display-flex(column);
+                gap: 20px;
+    
+                &__element {
+                    @include display-flex(row);
+                    justify-content: space-between;
+                    @include box-shadow-secondary;
+                    border-radius: 30px;
+    
+                    &__text {
+                        @include display-flex(column);
+                        padding-left: 20px;
+    
+                        & h3 {
+                            font-size: map-get($font-size, h3);
+                            font-weight: map-get($font-weight, h3);
+                            margin: 15px 0px 3px 0px;
+                        }
+    
+                        & h4 {
+                            font-size: map-get($font-size, h4);
+                            font-weight: map-get($font-weight, h4);
+                            margin: 3px 0px 15px 0px;
+                        }
+                    }
+    
+                    & p {
+                        align-self: flex-end;
+                        margin-right: 25px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__order-button {
+        text-align: center;
+        margin: 80px;
+    }
 }
