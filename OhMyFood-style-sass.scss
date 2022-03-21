@@ -20,19 +20,23 @@ $font-family-default: sans-serif;
 }
 
 @mixin box-shadow-primary {
-    box-shadow: 0px -12px 50px grey;
+    box-shadow: 0px -12px 25px black;
 }
 
 @mixin box-shadow-secondary {
     box-shadow: 0px 5px 10px lightgrey;
 }
 
+@mixin box-shadow-secondary-hover {
+    box-shadow: 0px 5px 10px #9356DC;
+}
+
 /* LIST */
 
 /* MAPS */
 
-$font-size: (input:17px, index-h1:20px, index-h2:20px, index-h3:18px, index-h4:18px, arrow:20px, h1:24px, h2:20px, h3:20px, h4:18px);
-$font-weight: (input:bold, index-h1:bolder, index-h2:bold, index-h3:bold, index-h4:normal, h2:normal, h3:bold, h4:normal);
+$font-size: (input: 18px, logo: 20px, index-h1:20px, index-h2:26px, index-h3:18px, index-h4:18px, arrow:24px, h1:28px, h2:20px, h3:20px, h4:18px);
+$font-weight: (input:bold, index-h1:bolder, index-h2:bolder, index-h3:bold, index-h4:normal, h2:normal, h3:bold, h4:normal);
 
 /* ENTIER */
 
@@ -44,38 +48,43 @@ body {
 /* HEADER */
 
 .header {
-    &__logo {
+    @include display-flex(row);
+    @include box-shadow-primary;
+    position: relative;
+
+    &__logo {        
         @include display-flex(row);
         justify-content: center;
-        @include box-shadow-primary;
-        margin-bottom: 2px;
 
         & img {
             width: 50%;
-            padding: 20px 0px 15px 0px;
+            padding: 25px 0px 15px 0px;
         }
     }
+}
 
-    &__search-bar {
-        @include display-flex(row);
-        justify-content: center;
+/* BODY */
+
+.search-bar {
+    @include display-flex(row);
+    justify-content: center;
+    background-color: #eaeaea;
+    padding: 20px 0px;
+
+    &__location-image {
+        color: $fourth-color;
+        font-size: map-get($font-size, input);
+        padding-right: 15px;
+    }
+
+    &__search input {        
+        color: $fourth-color;        
         background-color: #eaeaea;
-        padding: 20px 0px;
-
-        &__location-image {
-            color: $fourth-color;
-            padding-right: 15px;
-        }
-
-        &__search input {
-            font-family: $font-family-text, $font-family-default;
-            border: none;
-            background-color: #eaeaea;
-            color: $fourth-color;
-            width: 150px;
-            font-size: map-get($font-size, input);
-            font-weight: map-get($font-weight, input);
-        }
+        font-family: $font-family-text, $font-family-default;
+        font-size: map-get($font-size, input);
+        font-weight: map-get($font-weight, input);
+        width: 150px;
+        border: none;        
     }
 }
 
@@ -84,7 +93,6 @@ body {
 }
 
 .summary {
-    
     @include display-flex(column);
     align-items: center;
     text-align: center;
@@ -94,6 +102,7 @@ body {
 
     & h1 {
         margin: unset;
+        padding: 0px 30px;
         font-weight: map-get($font-weight, index-h1);
     }
 
@@ -105,24 +114,29 @@ body {
 .button {
     text-decoration: none;
     color: white;
-    background-image: linear-gradient(to bottom, #FF79DA ,#9356DC);
-    padding: 15px 20px;
+    background-image: linear-gradient(to bottom, #FF79DA ,#9356DC);    
     border-radius: 50px;
+    padding: 15px 20px;
     @include box-shadow-secondary;
+
+    &:hover {
+        opacity: 0.75;
+        @include box-shadow-secondary-hover;
+    }
 }
 
-.functioning {
-    
-    padding : 60px 0px;
+.functioning {    
+    padding : 50px 25px 50px 25px;
 
     & h2 {
         margin-top: unset;
         font-size: map-get($font-size, index-h2);
         font-weight: map-get($font-weight, index-h2);
-        padding-left: 15px;
+        padding-left: 8px;
     }
     &__steps {
         @include display-flex(column);
+        gap: 30px;
 
         &__restaurant-choice, &__menu-composition, &__enjoy {
             @include display-flex(row);
@@ -130,7 +144,6 @@ body {
             background-color: $background-color-lightgrey;
             border-radius: 20px;
             @include box-shadow-secondary;
-            margin: 20px;
             
             & p {
                 color: white;
@@ -144,12 +157,14 @@ body {
 
             & i {
                 color: grey;
-                align-self: center;       
+                align-self: center;
+                font-size: map-get($font-size, logo);  
                 margin: 0px 20px;         
             }
 
             & h3 {
                 color: black;
+                margin: 25px 0px;
             }
 
             &:hover {
@@ -166,35 +181,50 @@ body {
 .restaurants {
 
     background-color: $background-color-lightgrey;
-    padding : 60px 0px;
+    padding: 50px 25px 70px 25px;
 
     & h2 {
-        margin-top: unset;
+        margin : 0px 0px 20px 0px;
         font-size: map-get($font-size, index-h2);
         font-weight: map-get($font-weight, index-h2);
-        padding-left: 15px; 
     }
 
     &__list {
         @include display-flex(column);
+        gap: 20px;
 
         &__bloc {
             @include display-flex(column);
-            height: 250px;
+            min-height: 250px;
+            min-width: 250px;
             text-decoration: none;
             color: black;
-            margin: 20px;
-            
-            &__photo {
-                height: 70%;
-            }
-            
-            & img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
+
+            &__presentation {                
+                position: relative;
+
+                &__photo {
+                    height: 250px;
+
+                    & img {                        
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                        border-top-left-radius: 20px;
+                        border-top-right-radius: 20px;
+                    }
+                }
+
+                &__new {
+                    width: fit-content;
+                    position: absolute;
+                    top: 13px;
+                    right: 14px;
+                    color: darkgreen;
+                    background-color: $tertiary-color;
+                    border-radius: 5px;
+                    padding: 10px 15px;
+                }
             }
 
             &__content {
@@ -202,16 +232,18 @@ body {
                 justify-content: space-between;
                 background-color: white;
                 @include box-shadow-secondary;
+                height: 30%;
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
-                height: 30%;
 
+                &:hover {
+                    background-color: #9256dc23;
+                }
 
                 &__text {
                     @include display-flex(column);
                     justify-content: space-between;
-                    height: 100%;
-                    padding-left: 20px;
+                    padding: 0px 20px;
                     
                     & h3 {
                         margin: unset;
@@ -229,12 +261,30 @@ body {
                 }
 
                 &__like {
+                    &__vide {
                     align-self: center;
-                    font-size: 25px;
-                    padding-right: 40px;
+                    font-size: 30px;
+                    padding-right: 10%;
 
-                    &:hover i {
-                        background-image: linear-gradient(to top, #FF79DA ,#9356DC); 
+                        &:hover {
+                            display: none;
+
+                            & .restaurants__list__bloc__content__like__plein {
+                                display: unset;
+
+                                & i {
+                                    background: linear-gradient(to bottom, #FF79DA ,#9356DC);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color:transparent;
+                                }
+                            }
+                        }
+                    }
+
+                    &__plein {                                
+                        display: none;                                                                     
+                        align-self: center;                       
+                        font-size: 30px;
                     }
                 }
             }
@@ -242,26 +292,26 @@ body {
     }
 }
 
-footer {
+/* FOOTER */
+
+.footer {
     @include display-flex(column);
     justify-content:space-between;
     background-color: #353535;
     padding: 20px 20px 20px 20px;
-}
 
-.footer {
-   &__logo img {
+    &__logo img {
        height: 20px;
-       fill:white;
-   }
+    }
 
-   &__list {
+     &__list {
 	    list-style: none;
         padding-left: unset;
         margin-bottom: unset;
 
         & a {
             @include display-flex(row);
+            width: fit-content;
             color: white;
             text-decoration: none;
             padding : 5px 0px;
@@ -276,37 +326,46 @@ footer {
                 margin: unset;
             }
         }
-   }
+    }
 }
 
-/* MENU */
-
-header {
-    @include display-flex(column);
-}
+/* MENU - HEADER */
 
 .header {
-    &__top {
+    &__arrow {
         @include display-flex(row);
 
-        &__arrow {
-            position: relative;
+        & i{
             align-self: center;
             color: $fourth-color;
-            font-size: map-get($font-size, arrow);
-            right: 275px;
+            font-size: calc(20px + 0.3vw);
+            position: absolute;            
+            left: 30px;
         }
     }
 
-    &__image img {
-        height: 400px;
+    &__logo {
+        width: 100%;
+    }
+}
+
+/* MENU - BODY */
+
+.restaurant-picture {  
+    height: 300px;
+    margin-bottom: -75px;
+    
+    & img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
     }
 }
 
 .restaurant {
     @include display-flex(column);
+    background-color: white;    
     position: relative;
-    bottom: 100px;
     padding: 10px 20px;
     border: 2px solid white;
     border-top-left-radius: 50px;
@@ -320,25 +379,33 @@ header {
             font-family: $font-family-primary, $font-family-default;
             font-size: map-get($font-size, h1);
             font-weight: map-get($font-weight, h1);
+            margin-bottom: 0px;
         }
 
         & i {
-            align-self: center;
+            align-self: flex-end;
             font-size: 25px;
             padding-right: 20px;
+            padding-bottom: 8px;
         }
     }
 
     &__menu{
         &__dish {
-            padding-top: 30px;
+            padding-top: 20px;
 
             & h2 {
                 text-transform: uppercase;            
                 font-size: map-get($font-size, h2);
                 font-weight: map-get($font-weight, h2);
-                padding-bottom: 8px;
-                border-bottom: 4px  solid $tertiary-color;
+                margin-bottom: 0px;
+            }
+
+            &__lign{
+                height: 4px;
+                width: 50px;
+                background-color: $tertiary-color;
+                margin: 8px 0px 15px 0px;
             }
             
             &__bloc {
@@ -348,8 +415,14 @@ header {
                 &__element {
                     @include display-flex(row);
                     justify-content: space-between;
+                    text-decoration: none;
+                    color: black;
                     @include box-shadow-secondary;
                     border-radius: 30px;
+
+                    &:hover {
+                        background-color: #9256dc23;
+                    }
     
                     &__text {
                         @include display-flex(column);
@@ -379,6 +452,96 @@ header {
 
     &__order-button {
         text-align: center;
-        margin: 80px;
+        margin: 60px 0px;
+    }
+}
+
+/* VERSION DESKTOP + TABLETTE */
+
+@media all and (min-width: 768px)
+{
+/* HEADER */
+
+    .header {
+        &__logo {
+            justify-content: flex-start;
+            padding-left: 50px;
+
+            & img {
+                width: 25%;
+            }
+        }
+
+        &__arrow i {            
+            left: 15px;
+        }
+    }
+
+/* BODY */    
+
+    .functioning {        
+        & h2 {
+            text-align: center;
+            padding-left: unset;
+        }
+        &__steps {           
+            @include display-flex(row);
+            align-items: center;
+            gap: 30px;
+
+
+            &__restaurant-choice, &__menu-composition, &__enjoy {
+                flex: 0 0 calc(33% - 15px);
+
+                & h3 {
+                    padding-right: 20px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .restaurants {          
+        & h2 {
+            padding-left: 50px; 
+        }
+    
+        &__list {
+            @include display-flex(row);
+            width: 100%;
+            gap: 40px;
+            padding: 0px 15px;               
+            flex-wrap: wrap;      
+    
+            &__bloc {                
+                flex-basis: calc(25% - 38px);                        
+                margin: unset;
+            }
+        }
+    }
+
+/* MENU - BODY */
+
+    .restaurant-picture { 
+        min-height: 500px;
+    }
+
+    .restaurant {
+        &__menu{
+            @include display-flex(row);
+            gap: 50px;
+            &__dish {
+                width: calc(33% - 25px);
+                
+                &__bloc {
+                    @include display-flex(column);
+                    gap: 20px;
+                }
+            }
+        }
+    
+        &__order-button {
+            margin: 60px 0px 70px 0px;
+        }   
     }
 }
