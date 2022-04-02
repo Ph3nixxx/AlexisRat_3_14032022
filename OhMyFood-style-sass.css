@@ -173,18 +173,22 @@ table {
 @-webkit-keyframes hidden {
   0% {
     overflow-y: hidden;
+    position: fixed;
   }
   100% {
     overflow-y: visible;
+    position: inherit;
   }
 }
 
 @keyframes hidden {
   0% {
     overflow-y: hidden;
+    position: fixed;
   }
   100% {
     overflow-y: visible;
+    position: inherit;
   }
 }
 
