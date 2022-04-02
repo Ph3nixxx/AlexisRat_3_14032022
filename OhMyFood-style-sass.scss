@@ -251,6 +251,7 @@ table {
 }
 
 .button {
+    width: fit-content;
     color: white;
     background-image: linear-gradient(to bottom, $secondary-color, $primary-color); 
     text-decoration: none;   
@@ -644,8 +645,9 @@ table {
         }
     }
 
-    &__order-button {
-        text-align: center;
+    &__order-button {            
+        @include display-flex(column);
+        align-items: center;
         margin: 60px 0px;
     }
 }
