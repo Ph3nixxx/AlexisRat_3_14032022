@@ -2,19 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 /* VARIABLES */
 /* MIXINS */
-/* LIST */
 /* MAPS */
 /* ENTIER */
-body {
-  font-family: "Roboto", sans-serif;
-}
-
-/* ANIMATIONS - LOADING */
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+/* ANIMATIONS - LOADING */
+.index__body {
   -webkit-animation: hidden 0s 3s both;
           animation: hidden 0s 3s both;
 }
@@ -77,13 +79,6 @@ table {
           animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
-.loading-text {
-  text-align: center;
-  color: #9356DC;
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .loading-animation div:nth-child(1) {
   left: 0px;
   -webkit-animation: loading-animation1 1s infinite;
@@ -100,6 +95,13 @@ table {
   left: 24px;
   -webkit-animation: loading-animation2 1s infinite;
           animation: loading-animation2 1s infinite;
+}
+
+.loading-text {
+  text-align: center;
+  color: #9356DC;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 @-webkit-keyframes loading-animation1 {
@@ -285,17 +287,19 @@ table {
 .search-bar__location-image {
   color: #474141;
   font-size: 18px;
-  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .search-bar__search input {
-  width: 150px;
+  text-align: center;
   color: #474141;
   background-color: #eaeaea;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: bold;
   border: none;
+  padding: 0px;
+  margin-left: 5px;
 }
 
 .homepage {
@@ -551,7 +555,7 @@ table {
 .restaurants__list__bloc__content__like:hover i.fa-heart.fill {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(#9356DC), to(#FF79DA));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #9356DC, #FF79DA);
-  background-size: 100% 800%;
+  background-size: 100% 1600%;
   background-position: 100% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -563,6 +567,7 @@ table {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(#9356DC), to(#FF79DA));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #9356DC, #FF79DA);
   background-size: 100% 800%;
+  background-position: 0% 0%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

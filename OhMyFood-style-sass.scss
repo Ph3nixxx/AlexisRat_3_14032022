@@ -31,8 +31,6 @@ $font-family-default: sans-serif;
     box-shadow: 0px 5px 10px $primary-color;
 }
 
-/* LIST */
-
 /* MAPS */
 
 $font-size: (input: 18px, logo: 20px, index-h1:20px, index-h2:26px, index-h3:18px, index-h4:18px, h1:28px, h2:20px, h3:20px, h4:18px);
@@ -40,17 +38,20 @@ $font-weight: (input:bold, index-h1:bolder, index-h2:bolder, index-h3:bold, inde
 
 /* ENTIER */
 
+html, body {
+    height: 100%;
+    width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 body {
     font-family: $font-family-text, $font-family-default;
 }
 
 /* ANIMATIONS - LOADING */
 
-html, body {
-    height: 100%;
-    width: 100%;
-	margin: 0;
-	padding: 0;
+.index__body {
     animation : hidden 0s 3s both;
 }
 
@@ -79,16 +80,31 @@ table {
     width: 68px;
     position: relative;
     margin: 0px;
-}
 
-.loading-animation div {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 40px;
-    background-image: linear-gradient(to bottom, $secondary-color, $primary-color);   
-    border-radius: 100%;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    div {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 40px;
+        background-image: linear-gradient(to bottom, $secondary-color, $primary-color);   
+        border-radius: 100%;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+        &:nth-child(1) {
+            left: 0px;
+            animation: loading-animation1 1s infinite;
+        }
+    
+        &:nth-child(2) {
+            left: 0px;
+            animation: loading-animation2 1s infinite;
+        }
+    
+        &:nth-child(3) {
+            left: 24px;
+            animation: loading-animation2 1s infinite;    
+        }
+    }
 }
 
 .loading-text {    
@@ -96,19 +112,6 @@ table {
     color: $primary-color;
     font-size: 20px;
     font-weight: bold;
-}
-
-.loading-animation div:nth-child(1) {
-    left: 0px;
-    animation: loading-animation1 1s infinite;
-}
-.loading-animation div:nth-child(2) {
-    left: 0px;
-    animation: loading-animation2 1s infinite;
-}
-.loading-animation div:nth-child(3) {
-    left: 24px;
-    animation: loading-animation2 1s infinite;
 }
 
 @keyframes loading-animation1 {
@@ -188,7 +191,7 @@ table {
         @include display-flex(row);
         justify-content: center;
 
-        & img {
+        img {
             width: 50%;
             padding: 25px 0px 15px 0px;
         }
@@ -206,17 +209,19 @@ table {
     &__location-image {
         color: $fourth-color;
         font-size: map-get($font-size, input);
-        padding-right: 15px;
+        padding-left: 15px;
     }
 
     &__search input {
-        width: 150px;       
+        text-align: center;      
         color: $fourth-color;        
         background-color: #eaeaea;
         font-family: $font-family-text, $font-family-default;
         font-size: map-get($font-size, input);
         font-weight: map-get($font-weight, input);
-        border: none;        
+        border: none;
+        padding: 0px;
+        margin-left: 5px;        
     }
 }
 
@@ -232,13 +237,13 @@ table {
     font-size: map-get($font-size, index-h1);
     padding : 40px 20px 60px 20px;
 
-    & h1 {        
+    h1 {        
         font-weight: map-get($font-weight, index-h1);
         margin: unset;
         padding: 0px 30px;
     }
 
-    & p {
+    p {
         margin: 10px 0px 30px 0px;
     }
 }
@@ -260,12 +265,13 @@ table {
 .functioning {    
     padding : 50px 25px 50px 25px;
 
-    & h2 {
+    h2 {
         font-size: map-get($font-size, index-h2);
         font-weight: map-get($font-weight, index-h2);
         margin-top: unset;
         padding-left: 8px;
     }
+
     &__steps {
         @include display-flex(column);
         gap: 30px;
@@ -277,7 +283,7 @@ table {
             border-radius: 20px;
             @include box-shadow-secondary;
             
-            & p {
+            p {
                 color: white;
                 background-color: $primary-color;
                 align-self: center;
@@ -287,14 +293,14 @@ table {
                 padding: 5px 10px;
             }
 
-            & i {
+            i {
                 color: grey;
                 align-self: center;
                 font-size: map-get($font-size, logo);  
                 margin: 0px 20px;         
             }
 
-            & h3 {
+            h3 {
                 color: black;
                 margin: 25px 0px;
             }
@@ -302,7 +308,7 @@ table {
             &:hover {
                 background-color: #9256dc23;
 
-                & i {
+                i {
                     color: $primary-color;
                 }
             }
@@ -315,7 +321,7 @@ table {
     background-color: $background-color-lightgrey;
     padding: 50px 25px 70px 25px;
 
-    & h2 {
+    h2 {
         font-size: map-get($font-size, index-h2);
         font-weight: map-get($font-weight, index-h2);
         margin : 0px 0px 20px 0px;
@@ -338,7 +344,7 @@ table {
                 &__photo {
                     height: 250px;
 
-                    & img {                        
+                    img {                        
                         height: 100%;
                         width: 100%;
                         object-fit: cover;
@@ -377,14 +383,14 @@ table {
                     justify-content: space-between;
                     padding: 0px 20px;
                     
-                    & h3 {
+                    h3 {
                         font-size: map-get($font-size, index-h3);
                         font-weight: map-get($font-weight, index-h3);
                         margin: unset;
                         padding: 15px 0px 0px 0px;
                     }
 
-                    & h4 {
+                    h4 {
                         font-size: map-get($font-size, index-h4);
                         font-weight: map-get($font-weight, index-h4);
                         margin: unset;
@@ -402,7 +408,7 @@ table {
                             &.fa-heart {
                                 &.fill {
                                     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), $primary-color, $secondary-color);
-                                    background-size: 100% 800%;
+                                    background-size: 100% 1600%;
                                     background-position: 100% 100%;
                                     -webkit-background-clip: text;
                                     -webkit-text-fill-color: transparent;
@@ -417,6 +423,7 @@ table {
                                 transition: background-position 1s ease-in-out;
                                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0), $primary-color, $secondary-color);
                                 background-size: 100% 800%;
+                                background-position: 0% 0%;
                                 -webkit-background-clip: text;
                                 -webkit-text-fill-color: transparent;
                             }
@@ -445,20 +452,20 @@ table {
         padding-left: unset;
         margin-bottom: unset;
 
-        & a {
+        a {
             @include display-flex(row);
             width: fit-content;
             color: white;
             text-decoration: none;
             padding : 5px 0px;
             
-            & i {
+            i {
                 width: 15px;
                 align-self: center;
                 padding-right: 15px;   
             }
 
-            & p {
+            p {
                 margin: unset;
             }
         }
@@ -472,7 +479,7 @@ table {
         @include display-flex(row);
         padding: 25px 0px 15px 0px;
 
-        & i{
+        i {
             align-self: center;
             color: $fourth-color;
             font-size: calc(10px + 4vw);
@@ -492,7 +499,7 @@ table {
     height: 300px;
     margin-bottom: -75px;
     
-    & img {
+    img {
     object-fit: cover;
     height: 100%;
     width: 100%;
@@ -512,7 +519,7 @@ table {
         @include display-flex(row);
         justify-content: space-between;
 
-        & h1 {
+        h1 {
             font-family: $font-family-primary, $font-family-default;
             font-size: map-get($font-size, h1);
             font-weight: map-get($font-weight, h1);
@@ -532,7 +539,7 @@ table {
             padding-top: 20px;
             width: 100%;
 
-            & h2 {
+            h2 {
                 text-transform: uppercase;            
                 font-size: map-get($font-size, h2);
                 font-weight: map-get($font-weight, h2);
@@ -573,13 +580,13 @@ table {
                             width: 75%;                   
                             padding-left: 20px;    
                                 
-                            & h3 {
+                            h3 {
                                 font-size: map-get($font-size, h3);
                                 font-weight: map-get($font-weight, h3);
                                 margin: 15px 0px 3px 0px;
                             }
         
-                            & h4 {
+                            h4 {
                                 font-size: map-get($font-size, h4);
                                 font-weight: map-get($font-weight, h4);                                
                                 margin: 3px 0px 15px 0px;
@@ -608,13 +615,13 @@ table {
                         background-color: #9256dc23;
 
                         & .restaurant__menu__dish__bloc__tile__element__text {
-                            & h3 {
+                            h3 {
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
                                 overflow: hidden;
                             }
 
-                            & h4 {
+                            h4 {
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
                                 overflow: hidden;
@@ -625,7 +632,7 @@ table {
                             width: 20%;
                             overflow: hidden;
 
-                            & i {
+                            i {
                                 animation: check 0.5s ease-in-out;
                             }
                         }
@@ -641,16 +648,18 @@ table {
     }
 }
 
-.dish__starter {
-    animation: dish 3s 0s both;
-}
+.dish {
+    &__starter {
+        animation: dish 3s 0s both;
+    }
 
-.dish__main-course {
-    animation: dish 3s 0.5s both;
-}
+    &__main-course {
+        animation: dish 3s 0.5s both;
+    }
 
-.dish__dessert {
-    animation: dish 3s 1s both;
+    &__dessert {
+        animation: dish 3s 1s both;
+    }
 }
 
 /* VERSION DESKTOP + TABLETTE */
@@ -664,7 +673,7 @@ table {
             justify-content: flex-start;
             padding-left: 80px;
 
-            & img {
+            img {
                 width: 25%;
             }
         }
@@ -678,7 +687,7 @@ table {
 /* BODY */    
 
     .functioning {        
-        & h2 {
+        h2 {
             text-align: center;
             padding-left: unset;
         }
@@ -691,7 +700,7 @@ table {
             &__restaurant-choice, &__menu-composition, &__enjoy {
                 flex: 0 0 calc(33% - 15px);
 
-                & h3 {
+                h3 {
                     padding-right: 20px;
                     text-align: center;
                 }
@@ -700,7 +709,7 @@ table {
     }
 
     .restaurants {          
-        & h2 {
+        h2 {
             padding-left: 50px; 
         }
     
